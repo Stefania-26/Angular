@@ -1,0 +1,47 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      <span class="name">{{profile.firstname}} {{profile.lastname}}</span>
+    </md-card-title>
+    <md-card-subtitle>{{profile.title}}</md-card-subtitle>
+  </md-card-header>
+  <md-divider></md-divider>
+  <md-card-content layout="column">
+    <div layout="row">
+      <div hide-xs hide-sm flex="50" layout-padding>
+        <img class="portrait" src="assets/img/portrait.png">
+        <p *ngFor="let line of profile.descriptionLines">
+          {{line}}
+        </p>
+      </div>
+      <div id="links" layout="column" layout-padding flex-lg="50" flex="100">
+        <span class="contact-row"><i class="fa fa-birthday-cake fa-lg fa-fw" aria-hidden="true"></i>&nbsp;{{profile.birthdate}}</span>
+        <span class="contact-row"><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>&nbsp;{{profile.mail}}</span>
+        <span class="contact-row"><i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"></i>&nbsp;{{profile.address}}</span>
+
+        <div layout-sm="row" layout-gt-sm="column" class="social-icons">
+          <span *ngFor='let socialLink of socialLinks' class="social-row">
+            <a hide-gt-sm md-mini-fab class="social-fab" color="accent" href="{{socialLink.url}}" mdTooltip="{{socialLink.name}}">
+              <i class="fa {{socialLink.icon}} fa-lg fa-fw" aria-hidden="true"></i>
+            </a>
+            <a hide-sm hide-xs md-button class="social-row">
+              <i class="fa {{socialLink.icon}} fa-lg fa-fw" aria-hidden="true"></i>&nbsp;{{socialLink.name}}
+            </a>
+          </span>
+        </div>
+
+        <div id="language-skills" layout-padding>
+          <div *ngFor='let language of languages' class="language-skill">
+            <div>
+              <span><strong>{{language.name}}</strong> : </span>
+              <span class="skill-comment">{{language.comment}}</span>
+              <md-progress-bar mode="determinate" [value]="language.percentage"></md-progress-bar>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
